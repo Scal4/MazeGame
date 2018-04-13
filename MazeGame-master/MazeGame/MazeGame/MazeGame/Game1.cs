@@ -23,7 +23,7 @@ namespace MazeGame
         Tile[,] tileMap;
         Texture2D allPurposeTexture;
 
-        const int TileSize = 20;
+        Vector2 mapSize;
 
         public Game1()
         {
@@ -44,7 +44,6 @@ namespace MazeGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            tileMap = new Tile[TileSize, TileSize];
 
             base.Initialize();
         }
@@ -61,33 +60,35 @@ namespace MazeGame
             // TODO: use this.Content to load your game content here
             allPurposeTexture = this.Content.Load<Texture2D>("white");
 
-            makeFileMazeMap();
+            mapSize = makeTileMapArray();
 
-           /* for (int row = 0; row < tileMap.GetLength(0); row++)
+            tileMap = new Tile[(int)mapSize.X,(int)mapSize.Y];
+
+            makeFileMazeMap();
+        }
+        //Make tileMap [,]
+        private Vector2 makeTileMapArray()
+        {
+            StreamReader reader = new StreamReader(@"Content/MazeGameMap.txt");
+
+            int row = 0;
+            int column = 0;
+
+            while (!reader.EndOfStream)
             {
-                for (int column = 0; column < tileMap.GetLength(1); column++)
-                {
-                    Random r = new Random();
-                    if (row % 2 == 0)
-                    {
-                        makeTile(row, column, allPurposeTexture, new Color((int)r.Next(50, 150), (int)r.Next(50, 150), (int)r.Next(50, 150)));
-                    }
-                    else
-                    {
-                        makeTile(row, column, allPurposeTexture, Color.Black);
-                    }
-                    if(column % 2 == 0)
-                    {
-                        makeTile(row, column, allPurposeTexture, Color.Purple);
-                    }
-                }
-            } */
+                string s = reader.ReadLine();
+                row = s.Length;
+                column++;
+            }
+
+            return new Vector2(row, column);
+
         }
 
         //Take map from text file and produces it
         private void makeFileMazeMap()
         {
-            StreamReader reader = new StreamReader("C:/Users/Zexca/Desktop/MazeGame-master/MazeGame/MazeGame/MazeGameContent/MazeGameMap.txt");
+            StreamReader reader = new StreamReader(@"Content/MazeGameMap.txt");
 
             int row = 0;
             int column = 0;
@@ -103,13 +104,13 @@ namespace MazeGame
                 { // Use switch case
                     if(c[i].Equals('1'))
                     {
-                        tileMap[row, column] = new Tile(new Rectangle(row * (GraphicsDevice.Viewport.Width / TileSize), column * (GraphicsDevice.Viewport.Height / TileSize),
-                                                   GraphicsDevice.Viewport.Width / TileSize, GraphicsDevice.Viewport.Height / TileSize), allPurposeTexture, Color.Black);
+                        tileMap[row, column] = new Tile(new Rectangle(row * (GraphicsDevice.Viewport.Width / (int)mapSize.X), column * (GraphicsDevice.Viewport.Height / (int)mapSize.Y),
+                                                   GraphicsDevice.Viewport.Width / (int)mapSize.X, GraphicsDevice.Viewport.Height / (int)mapSize.Y), allPurposeTexture, Color.Black);
                     }
                     else
                     {
-                        tileMap[row, column] = new Tile(new Rectangle(row * (GraphicsDevice.Viewport.Width / TileSize), column * (GraphicsDevice.Viewport.Height / TileSize),
-                                                                           GraphicsDevice.Viewport.Width / TileSize, GraphicsDevice.Viewport.Height / TileSize), allPurposeTexture, Color.Purple);
+                        tileMap[row, column] = new Tile(new Rectangle(row * (GraphicsDevice.Viewport.Width / (int)mapSize.X), column * (GraphicsDevice.Viewport.Height / (int)mapSize.Y),
+                                                   GraphicsDevice.Viewport.Width / (int)mapSize.X, GraphicsDevice.Viewport.Height / (int)mapSize.Y), allPurposeTexture, Color.Purple);
                     }
                     row++;
                 }
@@ -124,8 +125,8 @@ namespace MazeGame
         private void makeTile(int row, int column, Texture2D texture, Color color)
         {
             tileMap[row, column] = new Tile(
-                           new Rectangle(row * (GraphicsDevice.Viewport.Width / TileSize), column * (GraphicsDevice.Viewport.Height / TileSize),
-                                                GraphicsDevice.Viewport.Width / TileSize, GraphicsDevice.Viewport.Height / TileSize), texture, color);
+                           new Rectangle(row * (GraphicsDevice.Viewport.Width / (int)mapSize.X), column * (GraphicsDevice.Viewport.Height / (int)mapSize.Y),
+                                                GraphicsDevice.Viewport.Width / (int)mapSize.X, GraphicsDevice.Viewport.Height / (int)mapSize.Y), texture, color);
         }
 
         /// <summary>

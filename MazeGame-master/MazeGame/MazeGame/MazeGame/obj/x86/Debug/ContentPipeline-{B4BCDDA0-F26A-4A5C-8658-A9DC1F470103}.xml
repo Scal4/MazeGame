@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Zexca\Desktop\MazeGame-master\MazeGame\MazeGame\MazeGame\bin\x86\Debug\Content\white.xnb</Output>
-      <Time>2018-04-11T13:25:27.4569618-05:00</Time>
+      <Output>C:\Users\216410\Documents\Visual Studio 2015\Projects\MazeGame-master\MazeGame-master\MazeGame\MazeGame\MazeGame\bin\x86\Debug\Content\white.xnb</Output>
+      <Time>2018-04-13T11:02:26-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -17,10 +17,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Zexca\Desktop\MazeGame-master\MazeGame\MazeGame\MazeGameContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Zexca\Desktop\MazeGame-master\MazeGame\MazeGame\MazeGame\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Zexca\Desktop\MazeGame-master\MazeGame\MazeGame\MazeGame\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Zexca\Desktop\MazeGame-master\MazeGame\MazeGame\MazeGame\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\216410\Documents\Visual Studio 2015\Projects\MazeGame-master\MazeGame-master\MazeGame\MazeGame\MazeGameContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\216410\Documents\Visual Studio 2015\Projects\MazeGame-master\MazeGame-master\MazeGame\MazeGame\MazeGame\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\216410\Documents\Visual Studio 2015\Projects\MazeGame-master\MazeGame-master\MazeGame\MazeGame\MazeGame\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\216410\Documents\Visual Studio 2015\Projects\MazeGame-master\MazeGame-master\MazeGame\MazeGame\MazeGame\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -48,8 +48,8 @@
         <Value>2011-09-01T16:22:30-05:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2018-03-30T12:25:55.8969568-05:00</Value>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2017-05-17T12:17:11.6083928-05:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
