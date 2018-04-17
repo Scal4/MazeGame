@@ -42,7 +42,8 @@ namespace MazeGame
         Texture2D selecterArrowTexture;
 
         Vector2 mapSize;
-
+        Player p1;
+        Player p2;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -88,7 +89,8 @@ namespace MazeGame
             font1 = this.Content.Load<SpriteFont>("SpriteFont1"); 
 
             mapSize = makeTileMapArray();
-
+            p1 = new Player(true, new Rectangle(20, 20, 20, 20), Content.Load<Texture2D>("blank"));
+            p2 = new Player(true, new Rectangle(80, 80, 20, 20), Content.Load<Texture2D>("blank"));
             tileMap = new Tile[(int)mapSize.X,(int)mapSize.Y];
 
             makeFileMazeMap();
@@ -215,7 +217,11 @@ namespace MazeGame
                     gameState = GameState.Game;
                 }
             }
-
+            if (gameState == GameState.Game)
+            {
+                p1.update(1, p2);
+                p2.update(2, p1);
+            }
             oldKb = kb;
 
             base.Update(gameTime);
@@ -253,6 +259,16 @@ namespace MazeGame
                         if (tileMap[row, column] != null)
                             spriteBatch.Draw(tileMap[row, column].TileTexture, tileMap[row, column].TileRect, tileMap[row, column].TileColor);
                     }
+                }
+                if(p1.it==false)
+                {
+                    spriteBatch.Draw(p1.pText, p1.pRect, Color.Red);
+                    spriteBatch.Draw(p2.pText, p2.pRect, Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(p1.pText, p1.pRect, Color.White);
+                    spriteBatch.Draw(p2.pText, p2.pRect, Color.Red);
                 }
             }
             
