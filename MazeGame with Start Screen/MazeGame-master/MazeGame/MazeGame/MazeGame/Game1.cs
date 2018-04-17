@@ -129,15 +129,18 @@ namespace MazeGame
 
                 for (int i = 0; i < c.Length; i++)
                 { // Use switch case
-                    if(c[i].Equals('1'))
+                    if(c[i].Equals('1')) // wall
                     {
-                        tileMap[row, column] = new Tile(new Rectangle(row * (GraphicsDevice.Viewport.Width / (int)mapSize.X), column * (GraphicsDevice.Viewport.Height / (int)mapSize.Y),
-                                                   GraphicsDevice.Viewport.Width / (int)mapSize.X, GraphicsDevice.Viewport.Height / (int)mapSize.Y), allPurposeTexture, Color.Black);
+                        addTile(row, column, Color.Black);
                     }
-                    else
+                    else if (c[i].Equals('D')) // door
                     {
-                        tileMap[row, column] = new Tile(new Rectangle(row * (GraphicsDevice.Viewport.Width / (int)mapSize.X), column * (GraphicsDevice.Viewport.Height / (int)mapSize.Y),
-                                                   GraphicsDevice.Viewport.Width / (int)mapSize.X, GraphicsDevice.Viewport.Height / (int)mapSize.Y), allPurposeTexture, Color.Purple);
+
+                        addTile(row, column, Color.Yellow);
+                    }
+                    else // nothing floor
+                    {
+                        addTile(row, column, Color.Purple);
                     }
                     row++;
                 }
@@ -146,8 +149,13 @@ namespace MazeGame
             }
 
         }
-
-
+        // add tile to tilemap
+        private void addTile(int row,int column, Color color)
+        {
+            tileMap[row, column] = new Tile(new Rectangle(row * (GraphicsDevice.Viewport.Width / (int)mapSize.X), column * (GraphicsDevice.Viewport.Height / (int)mapSize.Y),
+                                                      GraphicsDevice.Viewport.Width / (int)mapSize.X, GraphicsDevice.Viewport.Height / (int)mapSize.Y), allPurposeTexture, color);
+        }
+        
         // Makes tileMap
         private void makeTile(int row, int column, Texture2D texture, Color color)
         {
