@@ -9,19 +9,25 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace MazeGame 
+namespace MazeGame
 {
+    enum TileType
+    {
+        Floor, Wall, Door
+    }
     class Tile 
     {
         public Rectangle TileRect;
         public Texture2D TileTexture;
         public Color TileColor;
+        public TileType Tiletype;
 
-        public Tile(Rectangle TileR, Texture2D TileT, Color TileC)
+        public Tile(Rectangle TileR, Texture2D TileT, Color TileC, TileType type)
         {
             TileRect = TileR;
             TileTexture = TileT;
             TileColor = TileC;
+            Tiletype = type;
         }
     }
 }
