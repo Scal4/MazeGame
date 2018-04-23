@@ -90,8 +90,8 @@ namespace MazeGame
             font1 = this.Content.Load<SpriteFont>("SpriteFont1"); 
 
             mapSize = makeTileMapArray();
-            p1 = new Player(true, new Rectangle(20, 20, 20, 20), Content.Load<Texture2D>("blank"));
-            p2 = new Player(true, new Rectangle(80, 80, 20, 20), Content.Load<Texture2D>("blank"));
+            p1 = new Player(true, new Rectangle(20, 20, 20, 20), allPurposeTexture);
+            p2 = new Player(true, new Rectangle(80, 80, 20, 20), allPurposeTexture);
             p1Border = new Rectangle(p1.pRect.X + 2, p1.pRect.Y + 2, p1.pRect.Width - 4, p1.pRect.Height - 4);
             p2Border = new Rectangle(p2.pRect.X + 2, p2.pRect.Y + 2, p2.pRect.Width - 4, p2.pRect.Height - 4);
             tileMap = new Tile[(int)mapSize.X,(int)mapSize.Y];
@@ -269,13 +269,13 @@ namespace MazeGame
                 spriteBatch.Draw(allPurposeTexture, p2.pRect, Color.Green);
                 if(p1.it==false)
                 {
-                    spriteBatch.Draw(p1.pText, p1.pRect, Color.Red);
-                    spriteBatch.Draw(p2.pText, p2.pRect, Color.White);
+                    spriteBatch.Draw(p1.pText, p1Border, Color.Red);
+                    spriteBatch.Draw(p2.pText, p2Border, Color.White);
                 }
                 else
                 {
-                    spriteBatch.Draw(p1.pText, p1.pRect, Color.White);
-                    spriteBatch.Draw(p2.pText, p2.pRect, Color.Red);
+                    spriteBatch.Draw(p1.pText, p1Border, Color.White);
+                    spriteBatch.Draw(p2.pText, p2Border, Color.Red);
                 }
                 spriteBatch.DrawString(font1, "P1 score: " + p1.points, new Vector2(5, 10), Color.White);
                 spriteBatch.DrawString(font1, "P2 score: " + p2.points, new Vector2(GraphicsDevice.Viewport.Width/2, 10), Color.White);
