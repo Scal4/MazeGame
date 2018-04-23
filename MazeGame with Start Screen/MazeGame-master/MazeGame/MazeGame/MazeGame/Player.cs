@@ -17,7 +17,7 @@ namespace MazeGame
         public int points;
         public bool it;
         const int minSpeed = 1;
-        const int maxSpeed = 8;
+        const int maxSpeed = 7;
         public int iFrames = 0;
         int pMovex;
         int pMoveY;
@@ -69,9 +69,9 @@ namespace MazeGame
             {
                 bumpT--;
             }
-            if (bumpT == 0)
+            if (bumpT == 0||bumpT%8==0)
             {
-                bumpT = -1;
+                bumpT --;
                 speed *= -1;
             }
             moveP(pindex, otherP);
@@ -124,9 +124,9 @@ namespace MazeGame
                             ifCollide(otherP);
                             pRect.Y += speed;
                             otherP.speed *= -1;
-                            otherP.bumpT = 20;
+                            otherP.bumpT +=8;
                             speed *= -1;
-                            bumpT = 20;
+                            bumpT +=8;
                         }
                     }
                     if (kb.IsKeyDown(Keys.S))
@@ -137,9 +137,9 @@ namespace MazeGame
                             ifCollide(otherP);
                             pRect.Y -= speed;
                             otherP.speed *= -1;
-                            otherP.bumpT = 20;
+                            otherP.bumpT += 8;
                             speed *= -1;
-                            bumpT = 20;
+                            bumpT += 8;
                         }
                     }
                     if (kb.IsKeyDown(Keys.A))
@@ -150,9 +150,9 @@ namespace MazeGame
                             ifCollide(otherP);
                             pRect.X += speed;
                             otherP.speed *= -1;
-                            otherP.bumpT = 20;
+                            otherP.bumpT += 8;
                             speed *= -1;
-                            bumpT = 20;
+                            bumpT += 8;
                         }
                     }
                     if (kb.IsKeyDown(Keys.D))
@@ -163,9 +163,9 @@ namespace MazeGame
                             ifCollide(otherP);
                             pRect.X -= speed;
                             otherP.speed *= -1;
-                            otherP.bumpT = 20;
+                            otherP.bumpT += 8;
                             speed *= -1;
-                            bumpT = 20;
+                            bumpT += 8;
                         }
                     }
                 }
@@ -179,9 +179,9 @@ namespace MazeGame
                             ifCollide(otherP);
                             pRect.Y+= speed;
                             otherP.speed *= -1;
-                            otherP.bumpT = 20;
+                            otherP.bumpT += 8;
                             speed *= -1;
-                            bumpT = 20;
+                            bumpT += 8;
                         }
                     }
                     if (kb.IsKeyDown(Keys.Down))
@@ -193,9 +193,9 @@ namespace MazeGame
 
                             pRect.Y -= speed;
                             otherP.speed *= -1;
-                            otherP.bumpT = 20;
+                            otherP.bumpT += 8;
                             speed *= -1;
-                            bumpT = 20;
+                            bumpT += 8;
                         }
                     }
                     if (kb.IsKeyDown(Keys.Left))
@@ -206,9 +206,9 @@ namespace MazeGame
                             ifCollide(otherP);
                             pRect.X += speed;
                             otherP.speed *= -1;
-                            otherP.bumpT = 20;
+                            otherP.bumpT += 8;
                             speed *= -1;
-                            bumpT = 20;
+                            bumpT += 8;
                         }
                     }
                     if (kb.IsKeyDown(Keys.Right))
@@ -219,9 +219,9 @@ namespace MazeGame
                             ifCollide(otherP);
                             pRect.X -= speed;
                             otherP.speed *= -1;
-                            otherP.bumpT = 20;
+                            otherP.bumpT += 8;
                             speed *= -1;
-                            bumpT = 20;
+                            bumpT += 8;
                         }
                     }
                 }
