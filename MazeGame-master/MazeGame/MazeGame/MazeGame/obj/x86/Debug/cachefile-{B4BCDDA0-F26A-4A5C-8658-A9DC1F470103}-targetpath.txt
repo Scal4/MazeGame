@@ -1,2 +1,0 @@
-Content\white.xnb
-Content\MazeGameMap.txt
