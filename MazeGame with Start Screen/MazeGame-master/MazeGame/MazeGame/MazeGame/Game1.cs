@@ -40,7 +40,8 @@ namespace MazeGame
         Texture2D allPurposeTexture;
         Texture2D startScreenBackgroundTexture;
         Texture2D selecterArrowTexture;
-
+        Rectangle p1Border;
+        Rectangle p2Border;
         Vector2 mapSize;
         Player p1;
         Player p2;
@@ -64,7 +65,7 @@ namespace MazeGame
         {
             // TODO: Add your initialization logic here
             gameState = GameState.StartScreen;
-
+            //1440x900
             startScreenBackground = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             selecterArrow = new Rectangle(250, 500, 50, 50);
 
@@ -91,6 +92,8 @@ namespace MazeGame
             mapSize = makeTileMapArray();
             p1 = new Player(true, new Rectangle(20, 20, 20, 20), Content.Load<Texture2D>("blank"));
             p2 = new Player(true, new Rectangle(80, 80, 20, 20), Content.Load<Texture2D>("blank"));
+            p1Border = new Rectangle(p1.pRect.X + 2, p1.pRect.Y + 2, p1.pRect.Width - 4, p1.pRect.Height - 4);
+            p2Border = new Rectangle(p2.pRect.X + 2, p2.pRect.Y + 2, p2.pRect.Width - 4, p2.pRect.Height - 4);
             tileMap = new Tile[(int)mapSize.X,(int)mapSize.Y];
 
             makeFileMazeMap();
@@ -221,6 +224,8 @@ namespace MazeGame
             {
                 p1.update(1, p2);
                 p2.update(2, p1);
+                p1Border = new Rectangle(p1.pRect.X +2, p1.pRect.Y +2, p1.pRect.Width -4, p1.pRect.Height -4);
+                p2Border = new Rectangle(p2.pRect.X +2, p2.pRect.Y +2, p2.pRect.Width -4, p2.pRect.Height -4);
             }
             oldKb = kb;
 
@@ -260,6 +265,8 @@ namespace MazeGame
                             spriteBatch.Draw(tileMap[row, column].TileTexture, tileMap[row, column].TileRect, tileMap[row, column].TileColor);
                     }
                 }
+                spriteBatch.Draw(allPurposeTexture, p1.pRect, Color.Blue);
+                spriteBatch.Draw(allPurposeTexture, p2.pRect, Color.Green);
                 if(p1.it==false)
                 {
                     spriteBatch.Draw(p1.pText, p1.pRect, Color.Red);
@@ -270,6 +277,8 @@ namespace MazeGame
                     spriteBatch.Draw(p1.pText, p1.pRect, Color.White);
                     spriteBatch.Draw(p2.pText, p2.pRect, Color.Red);
                 }
+                spriteBatch.DrawString(font1, "P1 score: " + p1.points, new Vector2(5, 10), Color.White);
+                spriteBatch.DrawString(font1, "P2 score: " + p2.points, new Vector2(GraphicsDevice.Viewport.Width/2, 10), Color.White);
             }
             
             spriteBatch.End();
