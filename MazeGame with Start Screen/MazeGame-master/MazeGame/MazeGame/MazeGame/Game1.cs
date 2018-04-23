@@ -49,7 +49,7 @@ namespace MazeGame
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
+            // resolution note: 1440x900
             graphics.PreferredBackBufferHeight = 1000;
             graphics.PreferredBackBufferWidth = 1000;
             graphics.ApplyChanges();
