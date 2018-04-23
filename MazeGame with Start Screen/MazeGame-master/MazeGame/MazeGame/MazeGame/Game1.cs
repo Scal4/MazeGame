@@ -224,8 +224,8 @@ namespace MazeGame
             {
                 p1.update(1, p2);
                 p2.update(2, p1);
-                p1Border = new Rectangle(p1.pRect.X +2, p1.pRect.Y +2, p1.pRect.Width -4, p1.pRect.Height -4);
-                p2Border = new Rectangle(p2.pRect.X +2, p2.pRect.Y +2, p2.pRect.Width -4, p2.pRect.Height -4);
+                p1Border = new Rectangle(p1.pRect.X +3, p1.pRect.Y +3, p1.pRect.Width -6, p1.pRect.Height -6);
+                p2Border = new Rectangle(p2.pRect.X +3, p2.pRect.Y +3, p2.pRect.Width -6, p2.pRect.Height -6);
             }
             oldKb = kb;
 
