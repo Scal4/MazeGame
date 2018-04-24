@@ -305,7 +305,7 @@ namespace MazeGame
                                             SpriteEffects.None, 0f);
                     spriteBatch.DrawString(font1, "Press Escape to go back", new Vector2(GraphicsDevice.Viewport.Width / 4, 800), Color.Red, 0f, Vector2.Zero, (float)AspectRatio * stringScale, 
                                             SpriteEffects.None, 0f);
-                    spriteBatch.DrawString(font1, "Next Page - Right Arrow Key\nPrevious Page - Left Arrow Key", new Vector2(GraphicsDevice.Viewport.Width / 4, 850), Color.Red, 0f, Vector2.Zero, 
+                    spriteBatch.DrawString(font1, "Next Page - Right Arrow Key", new Vector2(GraphicsDevice.Viewport.Width / 4, 850), Color.Red, 0f, Vector2.Zero, 
                                             (float)AspectRatio * stringScale, SpriteEffects.None, 0f);
                 }
 
@@ -341,7 +341,7 @@ namespace MazeGame
                                             Color.Red, 0f, Vector2.Zero, (float)AspectRatio * stringScale, SpriteEffects.None, 0f);
                     spriteBatch.DrawString(font1, "Press Escape to go back", new Vector2(GraphicsDevice.Viewport.Width / 4, 800), Color.Red, 0f, Vector2.Zero, (float)AspectRatio * stringScale, 
                                             SpriteEffects.None, 0f);
-                    spriteBatch.DrawString(font1, "Next Page - Right Arrow Key\nPrevious Page - Left Arrow Key", new Vector2(GraphicsDevice.Viewport.Width / 4, 850), Color.Red, 0f, Vector2.Zero, 
+                    spriteBatch.DrawString(font1, "Previous Page - Left Arrow Key", new Vector2(GraphicsDevice.Viewport.Width / 4, 850), Color.Red, 0f, Vector2.Zero, 
                                             (float)AspectRatio * stringScale, SpriteEffects.None, 0f);
                 }
             }
