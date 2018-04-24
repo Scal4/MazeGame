@@ -90,8 +90,8 @@ namespace MazeGame
             font1 = this.Content.Load<SpriteFont>("SpriteFont1"); 
 
             mapSize = makeTileMapArray();
-            p1 = new Player(true, new Rectangle(20, 20, 20, 20), allPurposeTexture);
-            p2 = new Player(true, new Rectangle(80, 80, 20, 20), allPurposeTexture);
+            p1 = new Player(true, new Rectangle(80, 80, 20, 20), allPurposeTexture);
+            p2 = new Player(false, new Rectangle(140, 80, 20, 20), allPurposeTexture);
             p1Border = new Rectangle(p1.pRect.X + 2, p1.pRect.Y + 2, p1.pRect.Width - 4, p1.pRect.Height - 4);
             p2Border = new Rectangle(p2.pRect.X + 2, p2.pRect.Y + 2, p2.pRect.Width - 4, p2.pRect.Height - 4);
             tileMap = new Tile[(int)mapSize.X,(int)mapSize.Y];
