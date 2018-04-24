@@ -17,6 +17,7 @@ namespace MazeGame
         // 2d array of all the tiles.
         public Tile[,] tileMap;
         public Vector2 mapSize;
+        public Color FLOORCOLOR;
         int screenW;
         int screenH;
         Texture2D allPurposeTexture;
@@ -28,6 +29,7 @@ namespace MazeGame
             this.allPurposeTexture = allPurposeTexture;
             // Made to get a name for the text file and make it as a Tilemap
             String MapStageFileName = MapName;
+            FLOORCOLOR = Color.Purple;
 
             mapSize = makeTileMapArray(MapStageFileName);
 
@@ -69,6 +71,11 @@ namespace MazeGame
 
                 char[] c = s.ToCharArray();
 
+                for (int i = 0; i < c.Length; i++)
+                {
+                    tileMap[row, column] = new Tile(new Rectangle(row * (screenW / (int)mapSize.X), column * (screenH / (int)mapSize.Y),
+                                                              screenW / (int)mapSize.X, screenH / (int)mapSize.Y), allPurposeTexture, Color.Wheat, TileType.Floor);
+                }
 
                 for (int i = 0; i < c.Length; i++)
                 { // Use switch case
@@ -82,7 +89,7 @@ namespace MazeGame
                     }
                     else // nothing floor
                     {
-                        addTile(row, column, Color.Purple, TileType.Floor);
+                        addTile(row, column, FLOORCOLOR, TileType.Floor);
                     }
                     row++;
                 }
@@ -102,17 +109,18 @@ namespace MazeGame
                     break;
                 case TileType.Door:
                     // Vertical doors, let you go left to right and vice versa.
-                    if (tileMap[row - 1,column].Tiletype != TileType.Wall && tileMap[row + 1, column].Tiletype != TileType.Wall)
+                    if (tileMap[row - 1,column].Tiletype == TileType.Floor )
                     {
                         int tilewidth = (int)((screenW / (int)mapSize.X) * 0.3);
-                        tileMap[row, column] = new Tile(new Rectangle((int)(row * (screenW / (int)mapSize.X)) + tilewidth, column * (screenH / (int)mapSize.Y),
+                        tileMap[row, column] = new Tile(new Rectangle((int)(row * (screenW / (int)mapSize.X)) + (screenW / (int)mapSize.X) / 2 - tilewidth / 2, column * (screenH / (int)mapSize.Y),
                                                                       tilewidth, screenH / (int)mapSize.Y),
                                                                   allPurposeTexture, color, type);
                     }
                     else
                     {
-                        tileMap[row, column] = new Tile(new Rectangle(row * (screenW / (int)mapSize.X), column * (screenH / (int)mapSize.Y),
-                                                                  screenW / (int)mapSize.X, screenH / (int)mapSize.Y), allPurposeTexture, color, type);
+                        int tileHeight = (int)((screenH / (int)mapSize.Y) * 0.3);
+                        tileMap[row, column] = new Tile(new Rectangle(row * (screenW / (int)mapSize.X), column * (screenH / (int)mapSize.Y) + (screenH / (int)mapSize.Y) / 2 - tileHeight / 2,
+                                                                  screenW / (int)mapSize.X, tileHeight), allPurposeTexture, color, type);
                     }
                     break;
 
