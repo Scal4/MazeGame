@@ -45,6 +45,8 @@ namespace MazeGame
         Vector2 mapSize;
         Player p1;
         Player p2;
+        //p1 has a green border
+        //p2 has a blue border
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
