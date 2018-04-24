@@ -29,17 +29,20 @@ namespace MazeGame
         SpriteFont font1;
         KeyboardState oldKb;
 
+        Map CurrentMap;
+        Map firstMap;
+
         // Enum stuff
         GameState gameState;
 
         // Rectangles
         Rectangle startScreenBackground;
         Rectangle selecterArrow;
-
-        Tile[,] tileMap;
         Texture2D allPurposeTexture;
         Texture2D startScreenBackgroundTexture;
         Texture2D selecterArrowTexture;
+        double ScreenWidth;
+        double ScreenHeight;
 
         Vector2 mapSize;
 
@@ -48,8 +51,8 @@ namespace MazeGame
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            graphics.PreferredBackBufferHeight = 1000;
-            graphics.PreferredBackBufferWidth = 1000;
+            ScreenHeight = graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            ScreenWidth = graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             graphics.ApplyChanges();
         }
 
@@ -85,83 +88,10 @@ namespace MazeGame
             allPurposeTexture = this.Content.Load<Texture2D>("white");
             startScreenBackgroundTexture = this.Content.Load<Texture2D>("StartScreenBackground");
             selecterArrowTexture = this.Content.Load<Texture2D>("arrow");
-            font1 = this.Content.Load<SpriteFont>("SpriteFont1"); 
+            font1 = this.Content.Load<SpriteFont>("SpriteFont1");
 
-            mapSize = makeTileMapArray();
-
-            tileMap = new Tile[(int)mapSize.X,(int)mapSize.Y];
-
-            makeFileMazeMap();
-        }
-        //Make tileMap [,]
-        private Vector2 makeTileMapArray()
-        {
-            StreamReader reader = new StreamReader(@"Content/MazeGameMap.txt");
-
-            int row = 0;
-            int column = 0;
-
-            while (!reader.EndOfStream)
-            {
-                string s = reader.ReadLine();
-                row = s.Length;
-                column++;
-            }
-
-            return new Vector2(row, column);
-
-        }
-
-        //Take map from text file and produces it
-        private void makeFileMazeMap()
-        {
-            StreamReader reader = new StreamReader(@"Content/MazeGameMap.txt");
-
-            int row = 0;
-            int column = 0;
-
-            while (!reader.EndOfStream)
-            {
-                string s = reader.ReadLine();
-
-                char[] c = s.ToCharArray();
-                
-
-                for (int i = 0; i < c.Length; i++)
-                { // Use switch case
-                    if(c[i].Equals('1')) // wall
-                    {
-                        addTile(row, column, Color.Black);
-                    }
-                    else if (c[i].Equals('D')) // door
-                    {
-
-                        addTile(row, column, Color.Yellow);
-                    }
-                    else // nothing floor
-                    {
-                        addTile(row, column, Color.Purple);
-                    }
-                    row++;
-                }
-                column++;
-                row = 0;
-            }
-
-        }
-        // add tile to tilemap
-        private void addTile(int row,int column, Color color)
-        {
-            tileMap[row, column] = new Tile(new Rectangle(row * (GraphicsDevice.Viewport.Width / (int)mapSize.X), column * (GraphicsDevice.Viewport.Height / (int)mapSize.Y),
-                                                      GraphicsDevice.Viewport.Width / (int)mapSize.X, GraphicsDevice.Viewport.Height / (int)mapSize.Y), allPurposeTexture, color);
-        }
-        
-        // Makes tileMap
-        private void makeTile(int row, int column, Texture2D texture, Color color)
-        {
-            tileMap[row, column] = new Tile(
-                           new Rectangle(row * (GraphicsDevice.Viewport.Width / (int)mapSize.X), column * (GraphicsDevice.Viewport.Height / (int)mapSize.Y),
-                                                GraphicsDevice.Viewport.Width / (int)mapSize.X, GraphicsDevice.Viewport.Height / (int)mapSize.Y), texture, color);
+            firstMap = new Map(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, allPurposeTexture, "Content/MazeGameMap.txt");
+            CurrentMap = firstMap;
         }
 
         /// <summary>
@@ -180,6 +110,8 @@ namespace MazeGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            // escape key missing
+
             // Add your update logic here
             KeyboardState kb = Keyboard.GetState();
 
@@ -246,12 +178,12 @@ namespace MazeGame
             // Draws game screen
             if(gameState == GameState.Game)
             {
-                for (int row = 0; row < tileMap.GetLength(0); row++)
+                for (int row = 0; row < CurrentMap.tileMap.GetLength(0); row++)
                 {
-                    for (int column = 0; column < tileMap.GetLength(1); column++)
+                    for (int column = 0; column < CurrentMap.tileMap.GetLength(1); column++)
                     {
-                        if (tileMap[row, column] != null)
-                            spriteBatch.Draw(tileMap[row, column].TileTexture, tileMap[row, column].TileRect, tileMap[row, column].TileColor);
+                        if (CurrentMap.tileMap[row, column] != null)
+                            spriteBatch.Draw(CurrentMap.tileMap[row, column].TileTexture, CurrentMap.tileMap[row, column].TileRect, CurrentMap.tileMap[row, column].TileColor);
                     }
                 }
             }
